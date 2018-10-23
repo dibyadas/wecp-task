@@ -118,7 +118,7 @@
   dependencies:
     tslib "^1.7.1"
 
-"@angular/cli@~5.0.0":
+"@angular/cli@~6.2.6":
   version "6.2.6"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-6.2.6.tgz#f9f974f0576b65c9c2545b7e9e1a04a48243780c"
   dependencies:
