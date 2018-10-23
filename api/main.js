@@ -3,7 +3,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 const app = Express();
 const port = 3000;
-const dbUrl = "mongodb://username:password@mlab.com/wecp"; 
+const dbUrl =  "mongodb://username:password@mlab.com/wecp"; // put you own mongoDB credentials here
 
 app.get('/store_activity/:id', record);
 
@@ -13,18 +13,31 @@ function record(req, res){
     console.log('Inserting...');
 
     MongoClient.connect(dbUrl, { useNewUrlParser: true } ,function (err, client) {
+        res.set('Access-Control-Allow-Origin','*');
+        if(err){
+            console.log("this error");
+            res.json({'message' : 'error' });
+            return;
+        }
+
         var myobj = { id: req.params['id'], data: req.query.data };
         var db = client.db('wecp')
         db.collection("activity").insertOne(myobj, function(err, result) {
-            // console.log(res);
             if (err) {
+                console.log('err');
                 res.json({'message' : 'error' });
+                
+            } else {
+                console.log('done');
+                res.json({'message' : 'recorded' });
             }
-            res.json({'message' : 'recorded' });
-            console.log("1 document inserted");
         });
         client.close();
     }); 
+
+    // var myobj = { id: req.params['id'], data: req.query.data };
+    // console.log(myobj);
+    // res.send("ok");
 }
 
 function retrieve(req, res){
@@ -33,12 +46,14 @@ function retrieve(req, res){
     MongoClient.connect(dbUrl, { useNewUrlParser: true } ,function (err, client) {
         if (err) {
           res.json({'message' : 'error' });
+          return;
         } 
-        
+        res.set('Access-Control-Allow-Origin','*');
         var db = client.db('wecp')
         db.collection('activity').find({'id' : req.params['id'] }).toArray(function (err, result) {
             if (err) {
-                res.json({'message' : 'error' });
+                res.json({'message' : ['error'] });
+                return;
             } 
             var filtered = [];
             result.forEach(element => {
@@ -51,13 +66,14 @@ function retrieve(req, res){
 
     // const dummy = [ { _id: "5bce4299fb6fc060274b3cb9", id: 'netthis', data: 'oops' },
     // { _id: "5bce42c2fb6fc060274b3cc8", id: 'netthis', data: 'super' } ];
-    // // var filtered = [];
+    // var filtered = [];
     // dummy.forEach(element => {
     //     filtered.push(element['data']);
     // });
-    // res.json({ts : filtered});
+    // res.set('Access-Control-Allow-Origin','*');
+    // res.json({activity : filtered});
 
-    // var results = ["User id did this","User id did that"];
+    var results = ["User id did this","User id did that"];
     
 }
 
