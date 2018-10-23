@@ -10,35 +10,29 @@ import { FetchService } from '../fetch.service';
 
 export class IdComponent implements OnInit {
   id = "null";
+  status = "";
 
   constructor(private route: ActivatedRoute, private _fetchService: FetchService) {
     this.route.params.subscribe( params => this.id = params['id'] );
-    // const events = [
-    //     'scroll',
-    //     'wheel',
-    //     'touchmove',
-    //     'touchend',
-    // ];
-    
-    // const eventStreams = events.map((ev) => Observable.fromEvent($element, ev));
-    // const allEvents$ = Observable.merge(...eventStreams);
   }
 
   ngOnInit() {
   }
   
-
   mouseEnter(number){
     console.log("Entered :- ",number);
+    this.status = "Entered picture number - "+number;
     this._fetchService.storeActivity(this.id, "Hovered over :- " + number).subscribe();
   }
 
   onClick(number){
-    console.log("Clicked :- ",number);
+    console.log("Clicked :- ",number); 
+    this.status = "Clicked picture number - "+number;
     this._fetchService.storeActivity(this.id, "Clicker over :- " + number).subscribe();
   }
 
   mouseLeave(number){
+    this.status = "Left picture number - "+number;
     console.log("Left :- ",number);
   }
 
