@@ -8,7 +8,6 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  adminName = 'Dibya Admin';
   id = "" ;
 
   constructor(private _fetchService: FetchService, private route: ActivatedRoute) {
