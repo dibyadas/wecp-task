@@ -1,6 +1,11 @@
 # Wecp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.2.
+Working:- 
+
+Id Page :- <h3 align="center"><img src="id_page.png"></h3>
+<br>
+Admin Page :- <h3 align="center"><img src="admin_page.png"></h3>
+<br>
 
 ## Development server
 
