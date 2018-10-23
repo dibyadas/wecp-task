@@ -1,5 +1,11 @@
 <div>
   <h2>
-    Admin Name :- {{ adminName }}
+    Admin Name :- {{ adminName }} <br>
+    User Activity :- 
+    <ul>
+      <li *ngFor="let single of data.activity" >
+        {{ single }}
+      </li>
+    </ul>
   </h2>
 </div>
