@@ -1,10 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
-    Welcome to {{ title }}!
+    {{ title }}
   </h1>
-  <a routerLink="/admin" routerLinkActive="active">Admsfdsfin</a> <br>
-  <a routerLink="/netthis" routerLinkActive="active"> Example route - Checkout the Images!</a>
+  <!-- <a routerLink="/admin" routerLinkActive="active">Admsfdsfin</a> <br> -->
+  <!-- <a routerLink="/netthis" routerLinkActive="active"> </a> -->
+  <div id="foc">
+      <div>
+          Checkout some images:- <br>
+          <input #id type="text" name="id">
+          <button class="nav-item nav-link-edit" (click)="navig(id.value)" > Go! </button >
+      </div>
+
+      <div>
+           Go to its admin page <br>
+          <button class="nav-item nav-link-edit" (click)="toAdmin(id.value)" > Go! </button >
+      </div>
+  </div>
+  
+  
+  
   <router-outlet></router-outlet>
 </div>
 
